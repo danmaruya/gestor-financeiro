@@ -1,9 +1,11 @@
 package com.gestor_financeiro.controller;
 
 import com.gestor_financeiro.entity.Despesa;
+import com.gestor_financeiro.messages.Mensagem;
 import com.gestor_financeiro.service.DespesaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,5 +28,16 @@ public class DespesaController {
     @GetMapping
     public List<Despesa> retornarTodasAsDespesas() {
         return this.despesaService.retornarTodasAsDespesas();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public Mensagem deletarDespesa(@PathVariable Integer id) {
+        return this.despesaService.deletarDespesa(id);
+    }
+
+    @PutMapping("/{id}")
+    public Despesa alterarDespesa(@PathVariable Integer id, @Valid @RequestBody Despesa despesa) {
+        return this.despesaService.editarDespesa(despesa, id);
     }
 }
