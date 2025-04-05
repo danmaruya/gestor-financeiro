@@ -24,6 +24,13 @@ public class DespesaService {
         return this.despesaRepository.findAll();
     }
 
+    public Despesa retornarDespesaPorId(Integer id) {
+        if (this.despesaRepository.existsById(id)) {
+            return this.despesaRepository.findById(id).get();
+        }
+        throw new RuntimeException();
+    }
+
     public Mensagem deletarDespesa(Integer id) {
         if (this.despesaRepository.existsById(id)) {
             this.despesaRepository.deleteById(id);

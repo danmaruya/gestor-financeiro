@@ -30,6 +30,11 @@ public class DespesaController {
         return this.despesaService.retornarTodasAsDespesas();
     }
 
+    @GetMapping("/{id}")
+    public Despesa retornarDespesaPorId(@PathVariable Integer id) {
+        return this.despesaService.retornarDespesaPorId(id);
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
     public Mensagem deletarDespesa(@PathVariable Integer id) {
